@@ -171,6 +171,7 @@ hwin = tk.Tk()
 hwin.title("Sketchpad Helper")
 hwin.geometry("350x560")  # 490x700
 hwin.iconbitmap("resources/sketchpad icon.ico")
+hwin.attributes("-topmost", 1)
 focus_time = 0
 execute_time = 0
 
