@@ -46,7 +46,7 @@ def m31_segment():
 
 def m32_ray():
     construct()
-    press('R')
+    press('Y')
 
 
 def m33_vector():
@@ -121,7 +121,7 @@ def m84_measure_slope():
 
 def m90_reflect():
     transform()
-    press('T')
+    press('F')
 
 
 # def m91_centrosym():
