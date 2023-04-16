@@ -165,11 +165,25 @@ def ma6_label():
     press('L')
 
 
+def mb0_undo():
+    activate()
+    win32api.keybd_event(win32con.VK_CONTROL, 0, 0, 0)
+    press('Z')
+    win32api.keybd_event(win32con.VK_CONTROL, 0, win32con.KEYEVENTF_KEYUP, 0)
+
+
+def mb1_redo():
+    activate()
+    win32api.keybd_event(win32con.VK_CONTROL, 0, 0, 0)
+    press('Y')
+    win32api.keybd_event(win32con.VK_CONTROL, 0, win32con.KEYEVENTF_KEYUP, 0)
+
+
 # endregion
 gspwin = win32gui.FindWindow("GSP5MainWin", None)
 hwin = tk.Tk()
 hwin.title("Sketchpad Helper")
-hwin.geometry("350x560") # 70x70
+hwin.geometry("350x630")  # 70x70
 hwin.iconbitmap("resources/sketchpad icon.ico")
 hwin.attributes("-topmost", 1)
 focus_time = 0
@@ -269,6 +283,8 @@ img_a3ZoomIn = tk.PhotoImage(file="resources/ggb64x64icon/a3ZoomIn.png")
 img_a4ZoomOut = tk.PhotoImage(file="resources/ggb64x64icon/a4ZoomOut.png")
 img_a5HideObj = tk.PhotoImage(file="resources/ggb64x64icon/a5HideObj.png")
 img_a6HideLabel = tk.PhotoImage(file="resources/ggb64x64icon/a6HideLabel.png")
+img_b0Undo = tk.PhotoImage(file="resources/ggb64x64icon/b0Undo.png")
+img_b1Redo = tk.PhotoImage(file="resources/ggb64x64icon/b1Redo.png")
 # endregion
 # region set buttons
 tk.Button(hwin, image=img_00Save, command=m00_save).grid(row=10, column=5)
@@ -307,5 +323,7 @@ tk.Button(hwin, image=img_a2Erase, command=ma2_erase).grid(row=10, column=2)
 # tk.Button(hwin, image=img_a4ZoomOut).grid(row=10, column=5)
 tk.Button(hwin, image=img_a5HideObj, command=ma5_hide_obj).grid(row=10, column=3)
 tk.Button(hwin, image=img_a6HideLabel, command=ma6_label).grid(row=10, column=4)
+tk.Button(hwin, image=img_b0Undo, command=mb0_undo).grid(row=11, column=1)
+tk.Button(hwin, image=img_b1Redo, command=mb1_redo).grid(row=11, column=2)
 # endregion
 hwin.mainloop()
