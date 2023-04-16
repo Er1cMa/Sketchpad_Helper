@@ -1,13 +1,11 @@
 import tkinter as tk
-# from tkinter import messagebox
+
+import win32api
 import win32con
 import win32gui
-import win32api
 
 
-# import time
-
-
+# region define button command
 def m00_save():
     file()
     press('S')
@@ -167,6 +165,7 @@ def ma6_label():
     press('L')
 
 
+# endregion
 gspwin = win32gui.FindWindow("GSP5MainWin", None)
 hwin = tk.Tk()
 hwin.title("Sketchpad Helper")
@@ -176,8 +175,7 @@ focus_time = 0
 execute_time = 0
 
 
-# tk.Label(hwin, text="Sketchpad Helper", font=("Microsoft YaHei UI", 10)).grid(row=0,column=8)
-# MUST remember to grid anything.
+# region define control function
 def activate():
     if gspwin != 0:
         win32gui.SetForegroundWindow(gspwin)
@@ -232,32 +230,8 @@ def window():
     menu('W')
 
 
-"""
-def test():
-    if gspwin != 0:
-        # 将应用程序窗口激活
-        win32gui.SetForegroundWindow(gspwin)
-        time.sleep(focus_time)
-        # 发送Alt+C击键
-        win32api.keybd_event(win32con.VK_MENU, 0, 0, 0)  # 按下Alt键
-        win32api.keybd_event(ord('C'), 0, 0, 0)  # 按下C键
-        win32api.keybd_event(ord('C'), 0, win32con.KEYEVENTF_KEYUP, 0)  # 松开C键
-        win32api.keybd_event(win32con.VK_MENU, 0, win32con.KEYEVENTF_KEYUP, 0)  # 松开Alt键
-
-        # 等待一段时间，让菜单栏弹出
-        time.sleep(execute_time)
-
-        # 发送<M>击键
-        win32api.keybd_event(ord('M'), 0, 0, 0)  # 按下<M>键
-        win32api.keybd_event(ord('M'), 0, win32con.KEYEVENTF_KEYUP, 0)  # 松开<M>键
-        # print("GSP hWnd =", gspwin, ". Function proceeded successfully.")
-        time.sleep(1)
-        messagebox.showinfo(title='Maybe Success?', message="GSP hWnd =" + str(gspwin) +
-                                                            ".\nFunction proceeded successfully.\nPlease check your "
-                                                            "Sketchpad!\nIf unsuccessful, select a SEGMENT and "
-                                                            "try again. \nStill find problems? Contact @Er1cMa.")
-
-"""
+# endregion
+# region import image resources
 img_00Save = tk.PhotoImage(file="resources/ggb64x64icon/00Save.png")
 img_10Choose = tk.PhotoImage(file="resources/ggb64x64icon/10Choose.png")
 img_11Draw = tk.PhotoImage(file="resources/ggb64x64icon/11Draw.png")
@@ -294,7 +268,8 @@ img_a3ZoomIn = tk.PhotoImage(file="resources/ggb64x64icon/a3ZoomIn.png")
 img_a4ZoomOut = tk.PhotoImage(file="resources/ggb64x64icon/a4ZoomOut.png")
 img_a5HideObj = tk.PhotoImage(file="resources/ggb64x64icon/a5HideObj.png")
 img_a6HideLabel = tk.PhotoImage(file="resources/ggb64x64icon/a6HideLabel.png")
-# tk.Label(hwin, text="Try Midpoint Button.").grid(row=0)
+# endregion
+# region set buttons
 tk.Button(hwin, image=img_00Save, command=m00_save).grid(row=10, column=5)
 # tk.Button(hwin, image=img_10Choose,command=m1).grid(row=2, column=1)
 # tk.Button(hwin, image=img_11Draw).grid(row=2, column=2)
@@ -331,30 +306,5 @@ tk.Button(hwin, image=img_a2Erase, command=ma2_erase).grid(row=10, column=2)
 # tk.Button(hwin, image=img_a4ZoomOut).grid(row=10, column=5)
 tk.Button(hwin, image=img_a5HideObj, command=ma5_hide_obj).grid(row=10, column=3)
 tk.Button(hwin, image=img_a6HideLabel, command=ma6_label).grid(row=10, column=4)
-
-"""
-tk.Label(hwin, text="Time from setting focus on sketchpad to activate menu bar = ").grid(row=11, column=1)
-tk.Label(hwin, text="Time from activating menu bar to send keys = ").grid(row=12, column=1)
-# 创建输入框控件
-focus_input = tk.Entry(hwin)
-# 放置输入框，并设置位置
-focus_input.grid(row=11, column=2)
-focus_input.delete(0, "end")
-# 插入默认文本
-focus_input.insert(0, "1.00")
-execute_input = tk.Entry(hwin)
-execute_input.grid(row=12, column=2)
-execute_input.delete(0, "end")
-execute_input.insert(0, "1.00")
-
-
-def send_change_time_com():
-    global focus_time
-    global execute_time
-    focus_time = float(focus_input.get())
-    execute_time = float(execute_input.get())
-
-
-tk.Button(hwin, text="Change focus/execute time.", command=send_change_time_com).grid(row=13)
-"""
+# endregion
 hwin.mainloop()
