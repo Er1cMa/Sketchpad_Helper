@@ -71,7 +71,7 @@ def m42_angle_bisector():
 
 def m43_trace():
     display()
-    press('R')
+    press('T')
 
 
 def m50_polygonal():
