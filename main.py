@@ -6,6 +6,10 @@ import win32gui
 
 
 # region button commands
+def toggle_topmost():
+    global topmost_status
+    hwin.attributes("-topmost", 1 - topmost_status)
+    topmost_status = 1 - topmost_status
 def m00_save():
     file()
     press('S')
@@ -186,6 +190,7 @@ hwin.title("Sketchpad Helper")
 hwin.geometry("350x630")  # 70x70
 hwin.iconbitmap("resources/sketchpad icon.ico")
 hwin.attributes("-topmost", 1)
+topmost_status = 1
 focus_time = 0
 execute_time = 0
 
@@ -325,5 +330,6 @@ tk.Button(hwin, image=img_a5HideObj, command=ma5_hide_obj).grid(row=10, column=3
 tk.Button(hwin, image=img_a6HideLabel, command=ma6_label).grid(row=10, column=4)
 tk.Button(hwin, image=img_b0Undo, command=mb0_undo).grid(row=11, column=1)
 tk.Button(hwin, image=img_b1Redo, command=mb1_redo).grid(row=11, column=2)
+tk.Button(hwin, text="开关\n置顶", command=toggle_topmost).grid(row=11, column=3)
 # endregion
 hwin.mainloop()
