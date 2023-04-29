@@ -1,5 +1,5 @@
 import tkinter as tk
-
+import sys
 import win32api
 import win32con
 import win32gui
@@ -76,6 +76,8 @@ def m42_angle_bisector():
 def m43_trace():
     display()
     press('T')
+    win32api.keybd_event(13, 0, 0, 0)
+    win32api.keybd_event(13, 0, win32con.KEYEVENTF_KEYUP, 0)
 
 
 def m50_polygonal():
@@ -185,6 +187,8 @@ def mb1_redo():
 
 # endregion
 gspwin = win32gui.FindWindow("GSP5MainWin", None)
+if win32gui.FindWindow("TkTopLevel", "Sketchpad Helper") != 0:
+    sys.exit(0)
 hwin = tk.Tk()
 hwin.title("Sketchpad Helper")
 hwin.geometry("350x630")  # 70x70
